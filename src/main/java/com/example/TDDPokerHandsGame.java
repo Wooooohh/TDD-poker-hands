@@ -14,15 +14,22 @@ public class TDDPokerHandsGame {
     }
 
     int result = 0;
+    String winner = "";
     for (int i = cards1Array.length - 1; i >= 0; i--) {
       int card1Value = CardValues.getValue(cards1Array[i].charAt(0));
       int card2Value = CardValues.getValue(cards2Array[i].charAt(0));
-      if (card1Value != card2Value){
-        result = Math.max(card1Value, card2Value);
+      if (card1Value != card2Value) {
+        if (card1Value < card2Value) {
+          result = card2Value;
+          winner = "White";
+        } else {
+          result = card1Value;
+          winner = "Black";
+        }
         break;
       }
     }
-    return "White wins. - with high card: " + CardValues.getName(result);
+    return winner + " wins. - with high card: " + CardValues.getName(result);
   }
 
   private boolean isTie(String[] cards1Array, String[] cards2Array) {
