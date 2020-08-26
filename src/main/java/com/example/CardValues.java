@@ -1,6 +1,7 @@
 package com.example;
 
 public enum CardValues {
+  TWO('2',-1),
   THREE('3', 0),
   FOUR('4', 1),
   FIVE('5', 2),
@@ -43,7 +44,7 @@ public enum CardValues {
         return cv.getValue();
       }
     }
-    return -1;
+    return -999;
   }
 
   public static char getName(int value) {
