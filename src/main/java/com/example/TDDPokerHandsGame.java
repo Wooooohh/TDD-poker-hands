@@ -9,10 +9,21 @@ public class TDDPokerHandsGame {
   public String Compare(String cards1, String cards2) {
     String[] cards1Array = sortCards(cards1.split(" "));
     String[] cards2Array = sortCards(cards2.split(" "));
+    if(isTie(cards1Array, cards2Array)){
+      return "Tie";
+    }
     int card1Value = CardValues.getValue(cards1Array[3].charAt(0));
     int card2Value = CardValues.getValue(cards2Array[3].charAt(0));
     int result = Math.max(card1Value, card2Value);
-    return "White wins. – with high card: "+CardValues.getName(result);
+    return "White wins. - with high card: "+CardValues.getName(result);
+  }
+
+  private boolean isTie(String[] cards1Array, String[] cards2Array) {
+    for(int i = 0; i < cards1Array.length; i++){
+      if(cards1Array[i].charAt(0) != cards2Array[i].charAt(0))
+        return false;
+    }
+    return true;
   }
 
   private String[] sortCards(String[] cards) {

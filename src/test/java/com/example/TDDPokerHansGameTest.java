@@ -17,8 +17,8 @@ public class TDDPokerHansGameTest {
 
     @Test
     void should_return_not_null_when_compare_given_2_cards(){
-        String cards1 = "";
-        String cards2 = "";
+        String cards1 = "2H 3D KD 5S";
+        String cards2 = "2C 3H 8C AH";
         String result = tddPokerHandsGame.Compare(cards1, cards2);
         assertNotNull(result);
     }
@@ -28,6 +28,14 @@ public class TDDPokerHansGameTest {
         String cards1 = "2H 3D KD 5S";
         String cards2 = "2C 3H 8C AH";
         String result = tddPokerHandsGame.Compare(cards1, cards2);
-        assertEquals("White wins. – with high card: A", result);
+        assertEquals("White wins. - with high card: A", result);
+    }
+
+    @Test
+    void should_return_white_wins_with_high_card_and_ace_when_compare_given_2H_5D_3D_kS_and_KC_3H_5C_2H(){
+        String cards1 = "2H 5D 3D KS";
+        String cards2 = "KC 3H 5C 2H";
+        String result = tddPokerHandsGame.Compare(cards1, cards2);
+        assertEquals("Tie", result);
     }
 }
