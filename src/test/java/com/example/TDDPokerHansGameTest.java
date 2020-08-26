@@ -32,7 +32,7 @@ public class TDDPokerHansGameTest {
     }
 
     @Test
-    void should_return_black_wins_with_high_card_and_ace_when_compare_given_2H_3D_KD_5S_TD_and_2C_3H_8C_AH_5D(){
+    void should_return_black_wins_with_high_card_and_k_when_compare_given_2H_3D_KD_5S_TD_and_2C_3H_8C_AH_5D(){
         String cards1 = "2H 3D KD 5S TD";
         String cards2 = "2C 3H 8C QH 5D";
         String result = tddPokerHandsGame.Compare(cards1, cards2);
@@ -53,5 +53,13 @@ public class TDDPokerHansGameTest {
         String cards2 = "3H 2D 5D 9S KD";
         String result = tddPokerHandsGame.Compare(cards1, cards2);
         assertEquals("White wins. - with high card: 9", result);
+    }
+
+    @Test
+    void should_return_black_wins_with_pair_and_pair_fives_when_compare_given_3C_2H_5C_5H_7D_and_3H_2D_5D_9S_KD(){
+        String cards1 = "3C 2H 5C 5H 7D";
+        String cards2 = "3H 2D 5D 9S KD";
+        String result = tddPokerHandsGame.Compare(cards1, cards2);
+        assertEquals("Black wins. - with pair: Pair of 5", result);
     }
 }

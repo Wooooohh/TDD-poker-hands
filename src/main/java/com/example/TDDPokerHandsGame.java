@@ -1,8 +1,6 @@
 package com.example;
 
-import java.lang.reflect.Array;
-import java.util.Arrays;
-import java.util.Comparator;
+import java.util.*;
 
 public class TDDPokerHandsGame {
 
@@ -12,7 +10,73 @@ public class TDDPokerHandsGame {
     if (isTie(cards1Array, cards2Array)) {
       return "Tie";
     }
+    int cardType1 = judge(cards1Array);
+    int cardType2 = judge(cards1Array);
+    if (cardType1 == cardType2) {
+      if (cardType1 == CardTypes.HighCard.value) return getHighCardCompareResult(cards1Array, cards2Array);
+      else if (cardType1 == CardTypes.Pair.value) return getPairCompareResult(cards1Array, cards2Array);
+    }
+    return getCardResult(cards1Array, cards2Array, cardType1, cardType2);
+  }
 
+  private String getCardResult(String[] cards1Array, String[] cards2Array, int cardType1, int cardType2) {
+    String winner="";
+    String type = "";
+    int maxType = 0;
+    String[] maxCards = null;
+    if(cardType1 < cardType2){
+      winner = "White";
+      type = CardTypes.getName(cardType1);
+      maxType = cardType1;
+      maxCards = cards1Array;
+    } else{
+      winner = "Black";
+      type = CardTypes.getName(cardType2);
+      maxType = cardType2;
+      maxCards = cards2Array;
+    }
+    return winner + " wins. - with "+ type +": " + getCardValue(maxType, maxCards);
+  }
+
+  private String getCardValue(int maxType, String[] maxCards) {
+    switch (maxType){
+      case 8: return getPairString(maxCards);
+      default:
+        return "";
+    }
+  }
+
+  private String getPairString(String[] maxCards) {
+    for(int i = 0; i < maxCards.length-1; i++)
+      if(getCardValue(maxCards[i]) == getCardValue(maxCards[i+1]))
+        return "Pair of" + CardValues.getFullName(getCardValue(maxCards[i])) +"s";
+    return "";
+  }
+
+  private int getCardValue(String card){
+    return CardValues.getValue(card.charAt(0));
+  }
+
+  private String getPairCompareResult(String[] cards1Array, String[] cards2Array) {
+    return null;
+  }
+
+  private int judge(String[] cards1Array) {
+    int[] up = new int[10];
+    int i, k = 0;
+    for (i = 1; i <= 4; i++) {
+      if (CardValues.getValue(cards1Array[i].charAt(0))
+          != CardValues.getValue(cards1Array[i - 1].charAt(0))) {
+        up[k++] = i;
+      }
+    }
+    if (k == 3) {
+      return 8;
+    } else if (k == 4) return 9;
+    return 0;
+  }
+
+  private String getHighCardCompareResult(String[] cards1Array, String[] cards2Array) {
     int result = 0;
     String winner = "";
     for (int i = cards1Array.length - 1; i >= 0; i--) {
@@ -42,12 +106,9 @@ public class TDDPokerHandsGame {
   private String[] sortCards(String[] cards) {
     Arrays.sort(
         cards,
-        new Comparator() {
-          public int compare(Object o1, Object o2) {
-            String s1 = (String) o1;
-            String s2 = (String) o2;
-            return CardValues.getValue(s1.charAt(0)) - CardValues.getValue(s2.charAt(0));
-          }
+        (o1, o2) -> {
+          return CardValues.getValue(((String) o1).charAt(0))
+              - CardValues.getValue(((String) o2).charAt(0));
         });
     return cards;
   }

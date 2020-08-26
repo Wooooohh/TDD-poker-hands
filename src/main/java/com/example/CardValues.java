@@ -1,19 +1,19 @@
 package com.example;
 
 public enum CardValues {
-  TWO('2',-1),
-  THREE('3', 0),
-  FOUR('4', 1),
-  FIVE('5', 2),
-  SIX('6', 3),
-  SEVEN('7', 4),
-  EIGHt('8', 5),
-  NINE('9', 6),
-  TEN('T', 7),
-  JACK('J', 8),
+  Two('2',-1),
+  Three('3', 0),
+  Four('4', 1),
+  Five('5', 2),
+  Six('6', 3),
+  Seven('7', 4),
+  Eight('8', 5),
+  Nine('9', 6),
+  Ten('T', 7),
+  Jack('J', 8),
   Queen('Q', 9),
-  KING('K', 10),
-  ACE('A', 11);
+  King('K', 10),
+  Ace('A', 11);
   private char name;
   private int value;
 
@@ -54,5 +54,14 @@ public enum CardValues {
       }
     }
     return ' ';
+  }
+
+  public static String getFullName(int value) {
+    for (CardValues cv : CardValues.values()) {
+      if (cv.getValue() == value) {
+        return cv.name();
+      }
+    }
+    return "";
   }
 }
