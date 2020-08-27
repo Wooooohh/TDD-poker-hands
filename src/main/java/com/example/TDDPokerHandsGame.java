@@ -67,6 +67,7 @@ public class TDDPokerHandsGame {
     int pairValue1 = getCardValue(pairCard1[4]);
     int pairValue2 = getCardValue(pairCard2[4]);
     if (pairValue1 == pairValue2) {
+      return getHighCardCompareResult(cards1Array, cards2Array, 3);
     } else {
       if(pairValue1 > pairValue2){
         return "Black" + " wins. - with " + CardTypes.pair.name() + ": Pair of "+ CardTypes.getName(pairValue1) +"s";
@@ -74,7 +75,6 @@ public class TDDPokerHandsGame {
         return "White" + " wins. - with " + CardTypes.pair.name() + ": Pair of "+ CardValues.getFullName(pairValue2) +"s";
       }
     }
-    return null;
   }
 
   private String[] sortPair(String[] cardsArray) {
