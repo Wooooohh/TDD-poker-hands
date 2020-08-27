@@ -104,10 +104,18 @@ public class TDDPokerHansGameTest {
     }
 
     @Test
-    void should_return_white_wins_with_two_pairs_and_seven_when_compare_given_2C_2H_4C_4H_AD_and_4H_4D_5D_5S_9D(){
+    void should_return_white_wins_with_two_pairs_and_nine_when_compare_given_2C_2H_4C_4H_AD_and_4H_4D_5D_5S_9D(){
         String cards1 = "2C 2H 4C 4H AD";
         String cards2 = "4H 4D 5D 5S 9D";
         String result = tddPokerHandsGame.Compare(cards1, cards2);
         assertEquals("White wins. - with two pairs: Pair of FoursPair of Fives9", result);
+    }
+
+    @Test
+    void should_return_black_wins_with_two_pairs_and_ace_when_compare_given_AC_4H_5C_4H_5D_and_3H_3D_5D_5S_9D(){
+        String cards1 = "AC 4H 5C 4H 5D";
+        String cards2 = "3H 3D 5D 5S 9D";
+        String result = tddPokerHandsGame.Compare(cards1, cards2);
+        assertEquals("Black wins. - with two pairs: Pair of FoursPair of FivesA", result);
     }
 }

@@ -108,7 +108,7 @@ public class TDDPokerHandsGame {
       int value2 = getCardValue(twoPairCards2[i]);
       if(value1 > value2){
         return "Black wins. - with two pairs: Pair of " + CardValues.getFullName(getCardValue(twoPairCards1[2])) + "sPair of " + CardValues.getFullName(getCardValue(twoPairCards1[4])) + "s" + CardValues.getName(getCardValue(twoPairCards1[0]));
-      }else{
+      }else if(value1 < value2){
         return "White wins. - with two pairs: Pair of " + CardValues.getFullName(getCardValue(twoPairCards2[2])) + "sPair of " + CardValues.getFullName(getCardValue(twoPairCards2[4])) + "s" + CardValues.getName(getCardValue(twoPairCards2[0]));
       }
     }
