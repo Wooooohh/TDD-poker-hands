@@ -28,25 +28,29 @@ public class TDDPokerHandsGame {
   private String getThreeOfKindCompareResult(String[] cards1Array, String[] cards2Array) {
     String[] sortThree1 = sortThree(cards1Array);
     String[] sortThree2 = sortThree(cards2Array);
-    int value1 = getCardValue(cards1Array[4]);
-    int value2 = getCardValue(cards2Array[4]);
-    if (value1 < value2) {
-      return "White wins. - with three of a kind: three "
-          + CardValues.getFullName(value2)
-          + "s"
-          + " "
-          + CardValues.getName(getCardValue(sortThree2[1]))
-          + " "
-          + CardValues.getName(getCardValue(sortThree2[0]));
-    } else {
-      return "Black wins. - with three of a kind: three "
-          + CardValues.getFullName(value1)
-          + "s"
-          + " "
-          + CardValues.getName(getCardValue(sortThree1[1]))
-          + " "
-          + CardValues.getName(getCardValue(sortThree1[0]));
+    for (int i = cards1Array.length - 1; i >= 0; i--) {
+      if (i == 2 || i == 3) continue;
+      int value1 = getCardValue(cards1Array[i]);
+      int value2 = getCardValue(cards2Array[i]);
+      if (value1 < value2) {
+        return "White wins. - with three of a kind: three "
+            + CardValues.getFullName(value2)
+            + "s"
+            + " "
+            + CardValues.getName(getCardValue(sortThree2[1]))
+            + " "
+            + CardValues.getName(getCardValue(sortThree2[0]));
+      } else {
+        return "Black wins. - with three of a kind: three "
+            + CardValues.getFullName(value1)
+            + "s"
+            + " "
+            + CardValues.getName(getCardValue(sortThree1[1]))
+            + " "
+            + CardValues.getName(getCardValue(sortThree1[0]));
+      }
     }
+    return null;
   }
 
   private String[] sortThree(String[] cardsArray) {

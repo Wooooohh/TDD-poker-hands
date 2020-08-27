@@ -142,4 +142,12 @@ public class TDDPokerHansGameTest {
         String result = tddPokerHandsGame.Compare(cards1, cards2);
         assertEquals("Black wins. - with three of a kind: three Fives A 4", result);
     }
+
+    @Test
+    void should_return_black_wins_with_three_of_a_kind_and_fives_when_compare_given_5C_4H_5C_AH_5D_and_5H_9D_5D_5S_AD(){
+        String cards1 = "5C 4H 5C AH 5D";
+        String cards2 = "5H 9D 5D 5S AD";
+        String result = tddPokerHandsGame.Compare(cards1, cards2);
+        assertEquals("Black wins. - with three of a kind: three Fives A 4", result);
+    }
 }
