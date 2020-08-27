@@ -19,8 +19,45 @@ public class TDDPokerHandsGame {
         return getPairCompareResult(cards1Array, cards2Array);
       else if (cardType1 == CardTypes.twoPairs.value)
         return getTwoPairsCompareResult(cards1Array, cards2Array);
+      else if (cardType1 == CardTypes.threeOfAKind.value)
+        return getThreeOfKindCompareResult(cards1Array, cards2Array);
     }
     return getCardResult(cards1Array, cards2Array, cardType1, cardType2);
+  }
+
+  private String getThreeOfKindCompareResult(String[] cards1Array, String[] cards2Array) {
+    String[] sortThree1 = sortThree(cards1Array);
+    String[] sortThree2 = sortThree(cards2Array);
+    int value1 = getCardValue(cards1Array[4]);
+    int value2 = getCardValue(cards2Array[4]);
+    if (value1 < value2) {
+      return "White wins. - with three of a kind: three "
+          + CardValues.getFullName(value2)
+          + "s"
+          + " "
+          + CardValues.getName(getCardValue(sortThree2[1]))
+          + " "
+          + CardValues.getName(getCardValue(sortThree2[0]));
+    } else {
+      return "Black wins. - with three of a kind: three "
+          + CardValues.getFullName(value1)
+          + "s"
+          + " "
+          + CardValues.getName(getCardValue(sortThree1[1]))
+          + " "
+          + CardValues.getName(getCardValue(sortThree1[0]));
+    }
+  }
+
+  private String[] sortThree(String[] cardsArray) {
+    if (cardsArray[0].charAt(0) == cardsArray[2].charAt(0)) {
+      swap(cardsArray, 0, 3);
+      swap(cardsArray, 1, 4);
+    }
+    if (cardsArray[1].charAt(0) == cardsArray[3].charAt(0)) {
+      swap(cardsArray, 1, 4);
+    }
+    return cardsArray;
   }
 
   private String getCardResult(
@@ -108,23 +145,31 @@ public class TDDPokerHandsGame {
   private String getTwoPairsCompareResult(String[] cards1Array, String[] cards2Array) {
     String[] twoPairCards1 = sortTwoPairs(cards1Array);
     String[] twoPairCards2 = sortTwoPairs(cards2Array);
-    for(int i = 4; i >= 0; i = i - 2){
+    for (int i = 4; i >= 0; i = i - 2) {
       int value1 = getCardValue(twoPairCards1[i]);
       int value2 = getCardValue(twoPairCards2[i]);
-      if(value1 > value2){
-        return "Black wins. - with two pairs: Pair of " + CardValues.getFullName(getCardValue(twoPairCards1[2])) + "sPair of " + CardValues.getFullName(getCardValue(twoPairCards1[4])) + "s" + CardValues.getName(getCardValue(twoPairCards1[0]));
-      }else if(value1 < value2){
-        return "White wins. - with two pairs: Pair of " + CardValues.getFullName(getCardValue(twoPairCards2[2])) + "sPair of " + CardValues.getFullName(getCardValue(twoPairCards2[4])) + "s" + CardValues.getName(getCardValue(twoPairCards2[0]));
+      if (value1 > value2) {
+        return "Black wins. - with two pairs: Pair of "
+            + CardValues.getFullName(getCardValue(twoPairCards1[2]))
+            + "sPair of "
+            + CardValues.getFullName(getCardValue(twoPairCards1[4]))
+            + "s"
+            + CardValues.getName(getCardValue(twoPairCards1[0]));
+      } else if (value1 < value2) {
+        return "White wins. - with two pairs: Pair of "
+            + CardValues.getFullName(getCardValue(twoPairCards2[2]))
+            + "sPair of "
+            + CardValues.getFullName(getCardValue(twoPairCards2[4]))
+            + "s"
+            + CardValues.getName(getCardValue(twoPairCards2[0]));
       }
     }
     return null;
   }
 
   private String[] sortTwoPairs(String[] cardsArray) {
-    if(cardsArray[4].charAt(0) != cardsArray[3].charAt(0))
-      swap(cardsArray, 2, 4);
-    if(cardsArray[2].charAt(0) != cardsArray[1].charAt(0))
-      swap(cardsArray, 2, 0);
+    if (cardsArray[4].charAt(0) != cardsArray[3].charAt(0)) swap(cardsArray, 2, 4);
+    if (cardsArray[2].charAt(0) != cardsArray[1].charAt(0)) swap(cardsArray, 2, 0);
     return cardsArray;
   }
 
