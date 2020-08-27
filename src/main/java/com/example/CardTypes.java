@@ -1,15 +1,15 @@
 package com.example;
 
 public enum CardTypes {
-  HighCard(9, "high card"),
-  Pair(8, "pair"),
-  TwoPairs(7, "two pairs"),
-  ThreeOfAKind(6, "three of a kind"),
-  Straight(5, "straight"),
-  Flush(4, "flush"),
-  FullHouse(3, "full house"),
-  FourOfAKind(2, "four of a kind"),
-  StraightFlush(1, "straight flush");
+  highCard(9, "high card"),
+  pair(8, "pair"),
+  twoPairs(7, "two pairs"),
+  threeOfAKind(6, "three of a kind"),
+  straight(5, "straight"),
+  flush(4, "flush"),
+  fullHouse(3, "full house"),
+  fourOfAKind(2, "four of a kind"),
+  straightFlush(1, "straight flush");
   int value;
   String name;
 

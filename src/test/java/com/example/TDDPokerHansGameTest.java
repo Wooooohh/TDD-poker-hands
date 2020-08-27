@@ -60,6 +60,14 @@ public class TDDPokerHansGameTest {
         String cards1 = "3C 2H 5C 5H 7D";
         String cards2 = "3H 2D 5D 9S KD";
         String result = tddPokerHandsGame.Compare(cards1, cards2);
-        assertEquals("Black wins. - with pair: Pair of 5", result);
+        assertEquals("Black wins. - with pair: Pair of Fives", result);
+    }
+
+    @Test
+    void should_return_black_wins_with_pair_and_pair_fives_when_compare_given_3C_2H_5C_5H_7D_and_3H_2D_5D_9S_9D(){
+        String cards1 = "3C 2H 5C 5H 7D";
+        String cards2 = "3H 2D 5D 9S 9D";
+        String result = tddPokerHandsGame.Compare(cards1, cards2);
+        assertEquals("White wins. - with pair: Pair of Nines", result);
     }
 }
