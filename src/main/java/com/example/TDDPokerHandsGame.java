@@ -49,10 +49,15 @@ public class TDDPokerHandsGame {
         return getPairString(maxCards);
       case 7:
         return getTwoPairString(maxCards);
-
+      case 6:
+        return getThreeString(maxCards);
       default:
         return "";
     }
+  }
+
+  private String getThreeString(String[] maxCards) {
+    return "three " + CardValues.getFullName(getCardValue(maxCards[3])) + "s";
   }
 
   private String getTwoPairString(String[] maxCards) {
@@ -159,7 +164,7 @@ public class TDDPokerHandsGame {
       }
     }
     if (k == 2) {
-      if (up[0] == 2 && up[1] == 3 || up[0] == 4 && up[1] == 5 || up[0] == 2 && up[1] == 5) {
+      if (up[0] == 1 && up[1] == 2 || up[0] == 3 && up[1] == 4 || up[0] == 1 && up[1] == 4) {
         return 6;
       } else {
         return 7;
