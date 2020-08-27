@@ -45,9 +45,20 @@ public class TDDPokerHandsGame {
     switch (maxType) {
       case 8:
         return getPairString(maxCards);
+      case 7:
+        return getTwoPairString(maxCards);
+
       default:
         return "";
     }
+  }
+
+  private String getTwoPairString(String[] maxCards) {
+    StringBuilder sb = new StringBuilder();
+    for (int i = 0; i < maxCards.length - 1; i++)
+      if (getCardValue(maxCards[i]) == getCardValue(maxCards[i + 1]))
+        sb.append("Pair of " + CardValues.getFullName(getCardValue(maxCards[i])) + "s");
+    return sb.toString();
   }
 
   private String getPairString(String[] maxCards) {
@@ -69,10 +80,20 @@ public class TDDPokerHandsGame {
     if (pairValue1 == pairValue2) {
       return getHighCardCompareResult(cards1Array, cards2Array, 3);
     } else {
-      if(pairValue1 > pairValue2){
-        return "Black" + " wins. - with " + CardTypes.pair.name() + ": Pair of "+ CardTypes.getName(pairValue1) +"s";
-      }else{
-        return "White" + " wins. - with " + CardTypes.pair.name() + ": Pair of "+ CardValues.getFullName(pairValue2) +"s";
+      if (pairValue1 > pairValue2) {
+        return "Black"
+            + " wins. - with "
+            + CardTypes.pair.name()
+            + ": Pair of "
+            + CardTypes.getName(pairValue1)
+            + "s";
+      } else {
+        return "White"
+            + " wins. - with "
+            + CardTypes.pair.name()
+            + ": Pair of "
+            + CardValues.getFullName(pairValue2)
+            + "s";
       }
     }
   }
@@ -106,7 +127,13 @@ public class TDDPokerHandsGame {
         up[k++] = i;
       }
     }
-    if (k == 3) {
+    if (k == 2) {
+      if (up[0] == 2 && up[1] == 3 || up[0] == 4 && up[1] == 5 || up[0] == 2 && up[1] == 5) {
+        return 6;
+      } else {
+        return 7;
+      }
+    } else if (k == 3) {
       return 8;
     } else if (k == 4) return 9;
     return 0;

@@ -26,10 +26,18 @@ public enum CardTypes {
     this.value = value;
   }
 
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
   public static String getName(int value) {
     for (CardTypes ct : CardTypes.values()) {
       if (ct.getValue() == value) {
-        return ct.name();
+        return ct.getName();
       }
     }
     return "";

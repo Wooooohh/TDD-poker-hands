@@ -80,7 +80,7 @@ public class TDDPokerHansGameTest {
     }
 
     @Test
-    void should_return_black_wins_with_high_card_and_seven_when_compare_given_3C_2H_7C_9H_7D_and_3H_5D_7D_7S_6D(){
+    void should_return_black_wins_with_high_card_and_seven_when_compare_given_3C_2H_7C_AH_7D_and_3H_5D_7D_7S_6D(){
         String cards1 = "3C 2H 7C AH 7D";
         String cards2 = "3H 5D 7D 7S 6D";
         String result = tddPokerHandsGame.Compare(cards1, cards2);
@@ -93,5 +93,13 @@ public class TDDPokerHansGameTest {
         String cards2 = "3H 2D AD 9S 9D";
         String result = tddPokerHandsGame.Compare(cards1, cards2);
         assertEquals("Tie", result);
+    }
+
+    @Test
+    void should_return_black_wins_with_two_pairs_and_seven_when_compare_given_2C_2H_4C_4H_AD_and_3H_2D_AD_9S_9D(){
+        String cards1 = "2C 2H 4C 4H AD";
+        String cards2 = "3H 2D AD 9S 9D";
+        String result = tddPokerHandsGame.Compare(cards1, cards2);
+        assertEquals("Black wins. - with two pairs: Pair of TwosPair of Fours", result);
     }
 }
