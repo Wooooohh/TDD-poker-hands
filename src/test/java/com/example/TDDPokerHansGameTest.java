@@ -176,7 +176,7 @@ public class TDDPokerHansGameTest {
     }
 
     @Test
-    void should_return_white_with_flush_and_card_value_when_compare_given_7C_8H_9C_TH_JD_and_7D_8D_9D_TD_JD(){
+    void should_return_white_with_flush_and_card_value_when_compare_given_7C_8H_9C_TH_JD_and_7D_6D_3D_2D_JD(){
         String cards1 = "7C 8H 9C TH JD";
         String cards2 = "7D 6D 3D 2D JD";
         String result = tddPokerHandsGame.Compare(cards1, cards2);
@@ -184,7 +184,7 @@ public class TDDPokerHansGameTest {
     }
 
     @Test
-    void should_return_black_with_high_card_and_9_when_compare_given_7C_8H_9C_TH_JD_and_7D_8D_9D_TD_JD(){
+    void should_return_black_with_high_card_and_9_when_compare_given_4C_7C_8C_3C_9C_and_7D_6D_3D_2D_4D(){
         String cards1 = "4C 7C 8C 3C 9C";
         String cards2 = "7D 6D 3D 2D 4D";
         String result = tddPokerHandsGame.Compare(cards1, cards2);
