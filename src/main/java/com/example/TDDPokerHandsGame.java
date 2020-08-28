@@ -21,8 +21,20 @@ public class TDDPokerHandsGame {
         return getTwoPairsCompareResult(cards1Array, cards2Array);
       else if (cardType1 == CardTypes.threeOfAKind.value)
         return getThreeOfKindCompareResult(cards1Array, cards2Array);
+      else if (cardType1 == CardTypes.straight.value)
+        return getStraightCompareResult(cards1Array, cards2Array);
     }
     return getCardResult(cards1Array, cards2Array, cardType1, cardType2);
+  }
+
+  private String getStraightCompareResult(String[] cards1Array, String[] cards2Array) {
+    int value1 = getCardValue(cards1Array[4]);
+    int value2 = getCardValue(cards2Array[4]);
+    if(value1 < value2){
+      return "White" + " wins. - with " + "straight" + ": " + getStraightString(cards2Array);
+    }else {
+      return "Black" + " wins. - with " + "straight" + ": " + getStraightString(cards2Array);
+    }
   }
 
   private String getThreeOfKindCompareResult(String[] cards1Array, String[] cards2Array) {
@@ -93,13 +105,13 @@ public class TDDPokerHandsGame {
       case 6:
         return getThreeString(maxCards);
       case 5:
-        return getFlushString(maxCards);
+        return getStraightString(maxCards);
       default:
         return "";
     }
   }
 
-  private String getFlushString(String[] maxCards) {
+  private String getStraightString(String[] maxCards) {
     StringBuilder sb = new StringBuilder();
     for(int i = 0; i <maxCards.length-1; i++){
       sb.append(maxCards[i].charAt(0) + " ");
