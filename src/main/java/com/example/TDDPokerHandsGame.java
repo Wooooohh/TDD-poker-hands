@@ -23,8 +23,14 @@ public class TDDPokerHandsGame {
         return getThreeOfKindCompareResult(cards1Array, cards2Array);
       else if (cardType1 == CardTypes.straight.value)
         return getStraightCompareResult(cards1Array, cards2Array);
+      else if (cardType1 == CardTypes.flush.value)
+        return getFlushCompareResult(cards1Array, cards2Array);
     }
     return getCardResult(cards1Array, cards2Array, cardType1, cardType2);
+  }
+
+  private String getFlushCompareResult(String[] cards1Array, String[] cards2Array) {
+    return getHighCardCompareResult(cards1Array, cards2Array, 5);
   }
 
   private String getStraightCompareResult(String[] cards1Array, String[] cards2Array) {
