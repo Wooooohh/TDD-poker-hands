@@ -167,5 +167,19 @@ public class TDDPokerHansGameTest {
         assertEquals("White wins. - with straight: 7 8 9 T J", result);
     }
 
+    @Test
+    void should_return_tie_when_compare_given_7C_8H_9C_TH_JD_and_7H_8D_9D_TS_JD(){
+        String cards1 = "7C 8H 9C TH JD";
+        String cards2 = "7H 8D 9D TS JD";
+        String result = tddPokerHandsGame.Compare(cards1, cards2);
+        assertEquals("Tie", result);
+    }
 
+    @Test
+    void should_return_white_when_compare_given_7C_8H_9C_TH_JD_and_7D_8D_9D_TD_JD(){
+        String cards1 = "7C 8H 9C TH JD";
+        String cards2 = "7D 6D 3D 2D JD";
+        String result = tddPokerHandsGame.Compare(cards1, cards2);
+        assertEquals("White wins. - with flush: 2D 3D 6D 7D JD", result);
+    }
 }

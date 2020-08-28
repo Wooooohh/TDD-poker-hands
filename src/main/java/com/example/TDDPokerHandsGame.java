@@ -106,9 +106,20 @@ public class TDDPokerHandsGame {
         return getThreeString(maxCards);
       case 5:
         return getStraightString(maxCards);
+      case 4:
+        return getFlushString(maxCards);
       default:
         return "";
     }
+  }
+
+  private String getFlushString(String[] maxCards) {
+    StringBuilder sb = new StringBuilder();
+    for(int i = 0; i <maxCards.length-1; i++){
+      sb.append(maxCards[i] + " ");
+    }
+    sb.append(maxCards[4]);
+    return sb.toString();
   }
 
   private String getStraightString(String[] maxCards) {
