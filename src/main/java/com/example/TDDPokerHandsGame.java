@@ -92,9 +92,20 @@ public class TDDPokerHandsGame {
         return getTwoPairString(maxCards);
       case 6:
         return getThreeString(maxCards);
+      case 5:
+        return getFlushString(maxCards);
       default:
         return "";
     }
+  }
+
+  private String getFlushString(String[] maxCards) {
+    StringBuilder sb = new StringBuilder();
+    for(int i = 0; i <maxCards.length-1; i++){
+      sb.append(maxCards[i].charAt(0) + " ");
+    }
+    sb.append(maxCards[4].charAt(0));
+    return sb.toString();
   }
 
   private String getThreeString(String[] maxCards) {
@@ -204,6 +215,24 @@ public class TDDPokerHandsGame {
   }
 
   private int judge(String[] cardsArray) {
+    boolean flag1 = false;
+    boolean flag2 = false;
+    if (cardsArray[0].charAt(1) == cardsArray[1].charAt(1)
+        && cardsArray[1].charAt(1) == cardsArray[2].charAt(1)
+        && cardsArray[2].charAt(1) == cardsArray[3].charAt(1)
+        && cardsArray[3].charAt(1) == cardsArray[4].charAt(1)) flag1 = true;
+    if (getCardValue(cardsArray[0]) + 1 == getCardValue(cardsArray[1])
+        && getCardValue(cardsArray[1]) + 1 == getCardValue(cardsArray[2])
+        && getCardValue(cardsArray[2]) + 1 == getCardValue(cardsArray[3])
+        && getCardValue(cardsArray[3]) + 1 == getCardValue(cardsArray[4])) flag2 = true;
+    if(flag1 && flag2)
+      return 1;
+    else if(flag1 &&!flag2)
+      return 4;
+    else if(!flag1 && flag2)
+      return 5;
+
+
     int[] up = new int[10];
     int i, k = 0;
     for (i = 1; i <= 4; i++) {
