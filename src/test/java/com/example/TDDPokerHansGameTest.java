@@ -190,4 +190,12 @@ public class TDDPokerHansGameTest {
         String result = tddPokerHandsGame.Compare(cards1, cards2);
         assertEquals("Black wins. - with high card: 9", result);
     }
+
+    @Test
+    void should_return_white_with_full_house_and_three_threes_when_compare_given_4C_7C_8C_3C_9C_and_3H_3D_3S_2S_2D(){
+        String cards1 = "4C 7C 8C 3C 9C";
+        String cards2 = "3H 3D 3S 2S 2D";
+        String result = tddPokerHandsGame.Compare(cards1, cards2);
+        assertEquals("White wins. - with full house: three Threes", result);
+    }
 }
