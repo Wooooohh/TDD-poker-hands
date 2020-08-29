@@ -32,22 +32,22 @@ public class TDDPokerHandsGame {
   }
 
   private String getFullHouseCompareResult(String[] cards1Array, String[] cards2Array) {
-    if (cards1Array[2].charAt(0) != cards1Array[2].charAt(0)) {
+    if (cards1Array[2].charAt(0) != cards1Array[4].charAt(0)) {
       swap(cards1Array, 0, 3);
-      swap(cards1Array, 2, 4);
+      swap(cards1Array, 1, 4);
     }
-    if (cards2Array[2].charAt(0) != cards2Array[2].charAt(0)) {
+    if (cards2Array[2].charAt(0) != cards2Array[4].charAt(0)) {
       swap(cards2Array, 0, 3);
-      swap(cards2Array, 2, 4);
+      swap(cards2Array, 1, 4);
     }
     for (int i = cards1Array.length - 1; i >= 2; i++) {
       if (i == 3) continue;
       int value1 = getCardValue(cards1Array[i]);
       int value2 = getCardValue(cards2Array[i]);
       if (value1> value2) {
-        return "Black" + " wins. - with " + "full house" + ": three " + CardValues.getFullName(getCardValue(cards1Array[4])) + "s " + "Pairs of " + CardValues.getFullName(getCardValue(cards1Array[4])) +"s";
+        return "Black" + " wins. - with " + "full house" + ": three " + CardValues.getFullName(getCardValue(cards1Array[4])) + "s " + "Pairs of " + CardValues.getFullName(getCardValue(cards1Array[1])) +"s";
       } else {
-        return "White" + " wins. - with " + "full house" + ": three " + CardValues.getFullName(getCardValue(cards2Array[4])) + "s " + "Pairs of " + CardValues.getFullName(getCardValue(cards2Array[4])) +"s";
+        return "White" + " wins. - with " + "full house" + ": three " + CardValues.getFullName(getCardValue(cards2Array[4])) + "s " + "Pairs of " + CardValues.getFullName(getCardValue(cards2Array[1])) +"s";
       }
     }
     return null;
