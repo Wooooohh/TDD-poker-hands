@@ -40,7 +40,7 @@ public class TDDPokerHandsGame {
     if (cards2Array[4].charAt(0) != cards2Array[3].charAt(0)) {
       swap(cards2Array, 0, 4);
     }
-    for (int i = 1; i >= 0; i++) {
+    for (int i = 1; i >= 0; i--) {
       int value1 = getCardValue(cards1Array[i]);
       int value2 = getCardValue(cards2Array[i]);
       if (value1 > value2) {
@@ -52,7 +52,7 @@ public class TDDPokerHandsGame {
                 + "s "
                 + "and "
                 + CardValues.getFullName(getCardValue(cards1Array[0]));
-      } else {
+      } else if(value1 < value2){
         return "White"
                 + " wins. - with "
                 + "four of a kind"
@@ -75,7 +75,7 @@ public class TDDPokerHandsGame {
       swap(cards2Array, 0, 3);
       swap(cards2Array, 1, 4);
     }
-    for (int i = cards1Array.length - 1; i >= 2; i++) {
+    for (int i = 2; i >= 1; i--) {
       if (i == 3) continue;
       int value1 = getCardValue(cards1Array[i]);
       int value2 = getCardValue(cards2Array[i]);
@@ -89,7 +89,7 @@ public class TDDPokerHandsGame {
             + "Pairs of "
             + CardValues.getFullName(getCardValue(cards1Array[1]))
             + "s";
-      } else {
+      } else if(value1 < value2){
         return "White"
             + " wins. - with "
             + "full house"

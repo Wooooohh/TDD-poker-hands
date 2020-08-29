@@ -224,10 +224,18 @@ public class TDDPokerHansGameTest {
     }
 
     @Test
-    void should_return_white_with_four_of_a_kind_and_four_fours_when_compare_given_3H_3S_3C_3D_2C_and_5H_5D_5S_5S_9D(){
+    void should_return_white_with_four_of_a_kind_and_four_fours_when_compare_given_3H_3S_3C_3D_2C_and_5H_5D_5c_5S_9D(){
         String cards1 = "3H 3S 3C 3D 2C";
         String cards2 = "5H 5D 5S 5S 9D";
         String result = tddPokerHandsGame.Compare(cards1, cards2);
         assertEquals("White wins. - with four of a kind: four Fives and Nine", result);
+    }
+
+    @Test
+    void should_return_black_with_four_of_a_kind_and_four_fives_when_compare_given_5H_5S_5C_5D_9C_and_5H_5D_5C_5S_2D(){
+        String cards1 = "5H 5S 5C 5D 9C";
+        String cards2 = "5H 5D 5S 5S 2D";
+        String result = tddPokerHandsGame.Compare(cards1, cards2);
+        assertEquals("Black wins. - with four of a kind: four Fives and Nine", result);
     }
 }
