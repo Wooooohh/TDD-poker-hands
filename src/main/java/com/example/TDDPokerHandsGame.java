@@ -29,8 +29,20 @@ public class TDDPokerHandsGame {
         return getFullHouseCompareResult(cards1Array, cards2Array);
       else if (cardType1 == CardTypes.fourOfAKind.value)
         return getFullOfAKindCompareResult(cards1Array, cards2Array);
+      else if (cardType1 == CardTypes.straightFlush.value)
+        return getStraightFlushCompareResult(cards1Array, cards2Array);
     }
     return getCardResult(cards1Array, cards2Array, cardType1, cardType2);
+  }
+
+  private String getStraightFlushCompareResult(String[] cards1Array, String[] cards2Array) {
+    int value1 = getCardValue(cards1Array[4]);
+    int value2 = getCardValue(cards2Array[4]);
+    if (value1 < value2) {
+      return "White" + " wins. - with " + "straight flush" + ": " + getStraightFlushString(cards2Array);
+    } else {
+      return "Black" + " wins. - with " + "straight flush" + ": " + getStraightFlushString(cards2Array);
+    }
   }
 
   private String getFullOfAKindCompareResult(String[] cards1Array, String[] cards2Array) {
@@ -193,9 +205,20 @@ public class TDDPokerHandsGame {
         return getFullHouseString(maxCards);
       case 2:
         return getFourOfAKindString(maxCards);
+      case 1:
+        return getStraightFlushString(maxCards);
       default:
         return "";
     }
+  }
+
+  private String getStraightFlushString(String[] maxCards) {
+    StringBuilder sb = new StringBuilder();
+    for (int i = 0; i < maxCards.length - 1; i++) {
+      sb.append(maxCards[i] + " ");
+    }
+    sb.append(maxCards[4]);
+    return sb.toString();
   }
 
   private String getFourOfAKindString(String[] maxCards) {
