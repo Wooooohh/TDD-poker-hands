@@ -44,10 +44,26 @@ public class TDDPokerHandsGame {
       if (i == 3) continue;
       int value1 = getCardValue(cards1Array[i]);
       int value2 = getCardValue(cards2Array[i]);
-      if (value1> value2) {
-        return "Black" + " wins. - with " + "full house" + ": three " + CardValues.getFullName(getCardValue(cards1Array[4])) + "s " + "Pairs of " + CardValues.getFullName(getCardValue(cards1Array[1])) +"s";
+      if (value1 > value2) {
+        return "Black"
+            + " wins. - with "
+            + "full house"
+            + ": three "
+            + CardValues.getFullName(getCardValue(cards1Array[4]))
+            + "s "
+            + "Pairs of "
+            + CardValues.getFullName(getCardValue(cards1Array[1]))
+            + "s";
       } else {
-        return "White" + " wins. - with " + "full house" + ": three " + CardValues.getFullName(getCardValue(cards2Array[4])) + "s " + "Pairs of " + CardValues.getFullName(getCardValue(cards2Array[1])) +"s";
+        return "White"
+            + " wins. - with "
+            + "full house"
+            + ": three "
+            + CardValues.getFullName(getCardValue(cards2Array[4]))
+            + "s "
+            + "Pairs of "
+            + CardValues.getFullName(getCardValue(cards2Array[1]))
+            + "s";
       }
     }
     return null;
@@ -140,9 +156,15 @@ public class TDDPokerHandsGame {
         return getFlushString(maxCards);
       case 3:
         return getFullHouseString(maxCards);
+      case 2:
+        return getFourOfAKindString(maxCards);
       default:
         return "";
     }
+  }
+
+  private String getFourOfAKindString(String[] maxCards) {
+    return "four " + CardValues.getFullName(getCardValue(maxCards[3])) + "s";
   }
 
   private String getFullHouseString(String[] maxCards) {
@@ -296,7 +318,9 @@ public class TDDPokerHandsGame {
         up[k++] = i;
       }
     }
+
     if (k == 1) {
+      if (up[0] == 1 || up[0] == 4) return 2;
       if (up[0] == 2 || up[0] == 3) return 3;
     } else if (k == 2) {
       if (up[0] == 1 && up[1] == 2 || up[0] == 3 && up[1] == 4 || up[0] == 1 && up[1] == 4) {
