@@ -27,8 +27,43 @@ public class TDDPokerHandsGame {
         return getFlushCompareResult(cards1Array, cards2Array);
       else if (cardType1 == CardTypes.fullHouse.value)
         return getFullHouseCompareResult(cards1Array, cards2Array);
+      else if (cardType1 == CardTypes.fourOfAKind.value)
+        return getFullOfAKindCompareResult(cards1Array, cards2Array);
     }
     return getCardResult(cards1Array, cards2Array, cardType1, cardType2);
+  }
+
+  private String getFullOfAKindCompareResult(String[] cards1Array, String[] cards2Array) {
+    if (cards1Array[4].charAt(0) != cards1Array[3].charAt(0)) {
+      swap(cards1Array, 0, 4);
+    }
+    if (cards2Array[4].charAt(0) != cards2Array[3].charAt(0)) {
+      swap(cards2Array, 0, 4);
+    }
+    for (int i = 1; i >= 0; i++) {
+      int value1 = getCardValue(cards1Array[i]);
+      int value2 = getCardValue(cards2Array[i]);
+      if (value1 > value2) {
+        return "Black"
+                + " wins. - with "
+                + "four of a kind"
+                + ": four "
+                + CardValues.getFullName(getCardValue(cards1Array[4]))
+                + "s "
+                + "and "
+                + CardValues.getFullName(getCardValue(cards1Array[0]));
+      } else {
+        return "White"
+                + " wins. - with "
+                + "four of a kind"
+                + ": four "
+                + CardValues.getFullName(getCardValue(cards2Array[4]))
+                + "s "
+                + "and "
+                + CardValues.getFullName(getCardValue(cards2Array[0]));
+      }
+    }
+    return null;
   }
 
   private String getFullHouseCompareResult(String[] cards1Array, String[] cards2Array) {
