@@ -254,4 +254,12 @@ public class TDDPokerHansGameTest {
         String result = tddPokerHandsGame.Compare(cards1, cards2);
         assertEquals("White wins. - with straight flush: 5D 6D 7D 8D 9D", result);
     }
+
+    @Test
+    void should_return_tie_and_cards_when_compare_given_3C_4C_5C_6C_7C_and_3D_4D_5D_6D_7D(){
+        String cards1 = "3C 4C 5C 6C 7C";
+        String cards2 = "3D 4D 5D 6D 7D";
+        String result = tddPokerHandsGame.Compare(cards1, cards2);
+        assertEquals("Tie", result);
+    }
 }
