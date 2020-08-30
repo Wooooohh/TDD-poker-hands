@@ -64,7 +64,7 @@ public class TDDPokerHansGameTest {
     }
 
     @Test
-    void should_return_White_wins_with_pair_and_pair_fives_when_compare_given_3C_2H_5C_5H_7D_and_3H_2D_5D_9S_9D(){
+    void should_return_White_wins_with_pair_and_pair_nines_when_compare_given_3C_2H_5C_5H_7D_and_3H_2D_5D_9S_9D(){
         String cards1 = "3C 2H 5C 5H 7D";
         String cards2 = "3H 2D 5D 9S 9D";
         String result = tddPokerHandsGame.Compare(cards1, cards2);
@@ -96,7 +96,7 @@ public class TDDPokerHansGameTest {
     }
 
     @Test
-    void should_return_black_wins_with_two_pairs_and_seven_when_compare_given_2C_2H_4C_4H_AD_and_3H_2D_AD_9S_9D(){
+    void should_return_black_wins_with_two_pairs_when_compare_given_2C_2H_4C_4H_AD_and_3H_2D_AD_9S_9D(){
         String cards1 = "2C 2H 4C 4H AD";
         String cards2 = "3H 2D AD 9S 9D";
         String result = tddPokerHandsGame.Compare(cards1, cards2);
@@ -136,7 +136,7 @@ public class TDDPokerHansGameTest {
     }
 
     @Test
-    void should_return_black_wins_with_three_of_a_kind_and_fives_when_compare_given_5C_4H_5C_AH_5D_and_4H_9D_4D_5S_4D(){
+    void should_return_black_wins_with_three_of_a_kind_and_three_fives_when_compare_given_5C_4H_5C_AH_5D_and_4H_9D_4D_5S_4D(){
         String cards1 = "5C 4H 5C AH 5D";
         String cards2 = "4H 9D 4D 5S 4D";
         String result = tddPokerHandsGame.Compare(cards1, cards2);
@@ -152,7 +152,7 @@ public class TDDPokerHansGameTest {
     }
 
     @Test
-    void should_return_white_wins_with_straight_and_card_value_when_compare_given_5C_4H_5C_AH_5D_and_5H_9D_5D_5S_AD(){
+    void should_return_white_wins_with_straight_and_card_value_when_compare_given_5C_4H_5C_AH_5D_and_7H_8D_9D_TS_JD(){
         String cards1 = "5C 4H 5C AH 5D";
         String cards2 = "7H 8D 9D TS JD";
         String result = tddPokerHandsGame.Compare(cards1, cards2);
